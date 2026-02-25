@@ -18,3 +18,4 @@ public class PalindromeCheckerApp1 {
         }
     }
 }
+System.out.println("Welcome to the Palindrome Checker Application!");
