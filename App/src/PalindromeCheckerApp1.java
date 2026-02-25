@@ -1,21 +1,32 @@
+// File: UseCase4PalindromeCheckerApp.java
+import java.util.Scanner;
+
 public class PalindromeCheckerApp1 {
+    public static boolean isPalindrome(String input) {
+        input = input.replaceAll("\\s+", "").toLowerCase();
+        char[] charArray = input.toCharArray();
+        int start = 0;
+        int end = charArray.length - 1;
 
-    public static boolean isPalindrome(String text) {
-        String rev = "";
-        for (int i = text.length() - 1; i >= 0; i--) {
-            rev += text.charAt(i);
+        while (start < end) {
+            if (charArray[start] != charArray[end]) {
+                return false;
+            }
+            start++;
+            end--;
         }
-        return text.equalsIgnoreCase(rev);
+        return true;
     }
-
     public static void main(String[] args) {
-        String input = "madam";
-
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("=== UC4: Character Array Based Palindrome Checker ===");
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
         if (isPalindrome(input)) {
-            System.out.println(input + " is a Palindrome");
+            System.out.println("Result: \"" + input + "\" is a palindrome.");
         } else {
-            System.out.println(input + " is NOT a Palindrome");
+            System.out.println("Result: \"" + input + "\" is NOT a palindrome.");
         }
+        scanner.close();
     }
 }
-System.out.println("Welcome to the Palindrome Checker Application!");
