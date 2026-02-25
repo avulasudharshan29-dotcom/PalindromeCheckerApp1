@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -8,6 +10,12 @@ public class PalindromeCheckerApp1 {
 
     public static void main(String[] args) {
 
+        String input = "level";
+
+        LinkedList<Character> list = new LinkedList<>();
+
+        for (char c : input.toCharArray()) {
+            list.add(c);
         String input = "refer";
 
         Deque<Character> deque = new ArrayDeque<>();
@@ -24,6 +32,11 @@ public class PalindromeCheckerApp1 {
 
         boolean isPalindrome = true;
 
+        while (list.size() > 1) {
+            char first = list.removeFirst();
+            char last = list.removeLast();
+
+            if (first != last) {
         while (deque.size() > 1) {
             char first = deque.removeFirst();
             char last = deque.removeLast();
