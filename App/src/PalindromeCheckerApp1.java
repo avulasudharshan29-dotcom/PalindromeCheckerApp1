@@ -1,49 +1,29 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 public class PalindromeCheckerApp1 {
     public static void main(String[] args) {
-        String input = "noon";
+        String input = "civic";
+        Queue<Character> queue = new LinkedList<>();
         Stack<Character> stack = new Stack<>();
         for (char c : input.toCharArray()) {
+            queue.add(c);
             stack.push(c);
         }
         boolean isPalindrome = true;
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
+        while (!queue.isEmpty()) {
+            char fromQueue = queue.remove();
+            char fromStack = stack.pop();
+            if (fromQueue != fromStack) {
                 isPalindrome = false;
                 break;
             }
         }
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
-// File: UseCase4PalindromeCheckerApp.java
-import java.util.Scanner;
-
-public class PalindromeCheckerApp1 {
-    public static boolean isPalindrome(String input) {
-        input = input.replaceAll("\\s+", "").toLowerCase();
-        char[] charArray = input.toCharArray();
-        int start = 0;
-        int end = charArray.length - 1;
-
-        while (start < end) {
-            if (charArray[start] != charArray[end]) {
-                return false;
-            }
-            start++;
-            end--;
-        }
-        return true;
-    }
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("=== UC4: Character Array Based Palindrome Checker ===");
-        System.out.print("Enter a string: ");
-        String input = scanner.nextLine();
-        if (isPalindrome(input)) {
-            System.out.println("Result: \"" + input + "\" is a palindrome.");
+        System.out.println("Welcome to the Palindrome Checker Application!");
+        if (isPalindrome) {
+            System.out.println(input + " is a Palindrome");
         } else {
-            System.out.println("Result: \"" + input + "\" is NOT a palindrome.");
+            System.out.println(input + " is NOT a Palindrome");
         }
-        scanner.close();
     }
 }
