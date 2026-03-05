@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.LinkedList;
 
 import java.util.ArrayDeque;
@@ -10,10 +11,16 @@ public class PalindromeCheckerApp1 {
 
     public static void main(String[] args) {
 
-        String input = "A man a plan a canal Panama";
+class PalindromeChecker {
 
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+    public boolean checkPalindrome(String input) {
+        char[] arr = input.toCharArray();
+        int left = 0;
+        int right = arr.length - 1;
 
+        while (left < right) {
+            if (arr[left] != arr[right]) {
+                return false;
         boolean isPalindrome = true;
 
         for (int i = 0; i < normalized.length() / 2; i++) {
@@ -76,8 +83,24 @@ public class PalindromeCheckerApp1 {
                 isPalindrome = false;
                 break;
             }
+            left++;
+            right--;
         }
+        return true;
+    }
+}
 
+public class PalindromeCheckerApp1 {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Input : ");
+        String input = sc.nextLine();
+
+        PalindromeChecker checker = new PalindromeChecker();
+        boolean result = checker.checkPalindrome(input);
+
+        System.out.println("Is Palindrome? : " + result);
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
         System.out.println("Welcome to the Palindrome Checker Application!");
