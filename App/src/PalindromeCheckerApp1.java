@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Stack;
 import java.util.LinkedList;
 
 import java.util.ArrayDeque;
@@ -11,15 +12,21 @@ public class PalindromeCheckerApp1 {
 
     public static void main(String[] args) {
 
-class PalindromeChecker {
+interface PalindromeStrategy {
+    boolean check(String input);
+}
 
-    public boolean checkPalindrome(String input) {
-        char[] arr = input.toCharArray();
-        int left = 0;
-        int right = arr.length - 1;
+class StackStrategy implements PalindromeStrategy {
 
-        while (left < right) {
-            if (arr[left] != arr[right]) {
+    public boolean check(String input) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
                 return false;
         boolean isPalindrome = true;
 
@@ -83,9 +90,8 @@ class PalindromeChecker {
                 isPalindrome = false;
                 break;
             }
-            left++;
-            right--;
         }
+
         return true;
     }
 }
@@ -97,8 +103,8 @@ public class PalindromeCheckerApp1 {
         System.out.print("Input : ");
         String input = sc.nextLine();
 
-        PalindromeChecker checker = new PalindromeChecker();
-        boolean result = checker.checkPalindrome(input);
+        PalindromeStrategy strategy = new StackStrategy();
+        boolean result = strategy.check(input);
 
         System.out.println("Is Palindrome? : " + result);
         System.out.println("Input : " + input);
