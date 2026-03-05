@@ -99,14 +99,21 @@ class StackStrategy implements PalindromeStrategy {
 public class PalindromeCheckerApp1 {
 
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         System.out.print("Input : ");
         String input = sc.nextLine();
 
         PalindromeStrategy strategy = new StackStrategy();
+
+        long start = System.nanoTime();
         boolean result = strategy.check(input);
+        long end = System.nanoTime();
+
+        long executionTime = end - start;
 
         System.out.println("Is Palindrome? : " + result);
+        System.out.println("Execution Time : " + executionTime + " ns");
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
         System.out.println("Welcome to the Palindrome Checker Application!");
